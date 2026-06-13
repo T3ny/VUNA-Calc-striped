@@ -7,6 +7,7 @@
   <title>Calculator</title>
   <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
   <link rel="stylesheet" href="assets/css/styles.css">
+<base target="_blank">
 </head>
 
 <body>
@@ -34,40 +35,39 @@
                   </div>
 
                   <div class="btn-grid">
+                    <!-- Row 1: Brackets, Backspace, AC, ln -->
                     <button class="btn btn-light" onclick="bracketToResult('(')">(</button>
                     <button class="btn btn-light" onclick="bracketToResult(')')">)</button>
                     <button class="btn btn-light" onclick="backspace()">←</button>
-
-                    <!-- Row trig -->
                     <button class="btn btn-action" onclick="clearResult()">AC</button>
 
-                    <!-- Row 2 -->
+                    <!-- 🆕 Row 2: ln function + 7,8,9 -->
+                    <button class="btn btn-special" onclick="insertFunction('ln')">ln</button>
                     <button class="btn btn-light" onclick="appendToResult(7)">7</button>
                     <button class="btn btn-light" onclick="appendToResult(8)">8</button>
                     <button class="btn btn-light" onclick="appendToResult(9)">9</button>
 
-                    <!-- Row 3 -->
+                    <!-- Row 3: ÷ + 4,5,6 -->
                     <button class="btn btn-operator" onclick="operatorToResult('/')">÷</button>
                     <button class="btn btn-light" onclick="appendToResult(4)">4</button>
                     <button class="btn btn-light" onclick="appendToResult(5)">5</button>
                     <button class="btn btn-light" onclick="appendToResult(6)">6</button>
 
-                    <!-- Row 4 -->
+                    <!-- Row 4: × + 1,2,3 -->
                     <button class="btn btn-operator" onclick="operatorToResult('*')">×</button>
                     <button class="btn btn-light" onclick="appendToResult(1)">1</button>
                     <button class="btn btn-light" onclick="appendToResult(2)">2</button>
                     <button class="btn btn-light" onclick="appendToResult(3)">3</button>
 
-                    <!-- Row 5 -->
+                    <!-- Row 5: +, ., 0, % -->
                     <button class="btn btn-operator" onclick="operatorToResult('+')">+</button>
                     <button class="btn btn-light" onclick="appendToResult('.')">.</button>
                     <button class="btn btn-light" onclick="appendToResult(0)">0</button>
                     <button class="btn btn-operator" onclick="percentToResult('%')">%</button>
-                    
-                    <!-- Row 9 -->
-                    <button class="btn btn-operator" onclick="operatorToResult('-')">−</button>
 
-                    <button class="btn btn-equals" onclick="calculateResult()" style="grid-column: span 4;">=</button>
+                    <!-- Row 6: − (span 1) + = (span 3) -->
+                    <button class="btn btn-operator" onclick="operatorToResult('-')">−</button>
+                    <button class="btn btn-equals" onclick="calculateResult()" style="grid-column: span 3;">=</button>
                   </div>
                 </div>
               </div>
@@ -83,4 +83,3 @@
 </body>
 
 </html>
-

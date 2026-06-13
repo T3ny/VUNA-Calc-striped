@@ -84,9 +84,25 @@ function clearResult() {
   updateResult();
 }
 
+// 🆕 LN FUNCTION - inserts the natural-log token into the expression
+function insertFunction(name) {
+  currentExpression += `${name}(`;
+  updateResult();
+}
+
+function lnToResult() {
+  insertFunction("ln");
+}
+
+function balanceParentheses(expr) {
+  const openCount = (expr.match(/\(/g) || []).length;
+  const closeCount = (expr.match(/\)/g) || []).length;
+  return expr + ")".repeat(Math.max(0, openCount - closeCount));
+}
 
 function normalizeExpression(expr) {
   return expr
+    .replace(/\b(?:ln|log)\s*\(/gi, "Math.log(")
     .replace(/asin\(/g, "asinDeg(")
     .replace(/acos\(/g, "acosDeg(")
     .replace(/atan\(/g, "atanDeg(")
@@ -131,9 +147,7 @@ function percentToResult() {
     currentExpression = percentVal.toString();
   }
 
-  // 🔥 ADD THIS LINE
   currentExpression += "*";
-
   updateResult();
 }
 
@@ -142,8 +156,9 @@ function percentToResult() {
 // ------------------------------
 function calculateExpression(expression) {
   try {
-   
-    let normalizedExpression = normalizeExpression(expression);
+
+    const balancedExpression = balanceParentheses(expression);
+    let normalizedExpression = normalizeExpression(balancedExpression);
 
     // 🧠 Replace "ans" with last result automatically
     normalizedExpression = normalizedExpression.replace(
@@ -154,7 +169,7 @@ function calculateExpression(expression) {
     // Calculate result
     let result = eval(normalizedExpression);
     console.log("Calculated result for expression:", expression, "->", result);
- 
+
     if (isNaN(result) || !isFinite(result)) {
       throw new Error();
     }
