@@ -35,6 +35,7 @@ body {
 
 /* ============ LOADING SCREEN - OPTIMIZED ============ */
 .loading-screen {
+    will-change: opacity, visibility;
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
@@ -56,7 +57,7 @@ body {
     position: relative;
     color: #fff;
     text-align: center;
-    will-change: transform;
+    
 }
 .loading-glitch::before, .loading-glitch::after {
     content: attr(data-text);
@@ -131,6 +132,7 @@ body {
 
 /* ============ CUSTOM CURSOR - OPTIMIZED ============ */
 .cursor-main {
+    will-change: transform, left, top;
     position: fixed;
     width: 12px; height: 12px;
     background: var(--gold);
@@ -140,9 +142,10 @@ body {
     mix-blend-mode: difference;
     transition: transform 0.1s ease;
     box-shadow: 0 0 15px rgba(255,215,0,0.5);
-    will-change: transform, left, top;
+    
 }
 .cursor-ring {
+    will-change: transform, left, top;
     position: fixed;
     width: 40px; height: 40px;
     border: 2px solid rgba(255,215,0,0.3);
@@ -150,7 +153,7 @@ body {
     pointer-events: none;
     z-index: 99998;
     transition: transform 0.15s ease;
-    will-change: transform, left, top;
+    
 }
 
 /* ============ BACKGROUND CANVAS - OPTIMIZED ============ */
@@ -172,7 +175,7 @@ body {
     perspective: 1200px;
     overflow: hidden;
     transition: transform 0.3s ease;
-    will-change: transform;
+    
 }
 
 .cube-container {
@@ -185,7 +188,7 @@ body {
     position: absolute;
     transform-style: preserve-3d;
     animation: cubeFloat 10s ease-in-out infinite;
-    will-change: transform;
+    
 }
 
 .cube-face {
@@ -213,7 +216,7 @@ body {
     position: absolute;
     transform-style: preserve-3d;
     animation: pyramidSpin 15s linear infinite;
-    will-change: transform;
+    
 }
 
 .pyramid-face {
@@ -245,7 +248,7 @@ body {
     border-right-color: var(--neon-green);
     transform-style: preserve-3d;
     animation: torusSpin 8s linear infinite;
-    will-change: transform;
+    
 }
 
 .torus-ring::before {
@@ -314,7 +317,7 @@ body {
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    will-change: transform;
+    
 }
 
 .holographic-card::before {
@@ -351,7 +354,7 @@ body {
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255,255,255,0.05);
     transition: all 0.3s ease;
-    will-change: background, box-shadow;
+    
 }
 .nav-logo {
     font-family: 'Orbitron', sans-serif;
@@ -418,7 +421,7 @@ body {
     z-index: 2;
     text-align: center;
     transform-style: preserve-3d;
-    will-change: transform;
+    
 }
 
 .hero-badge {
@@ -435,7 +438,7 @@ body {
     position: relative;
     overflow: hidden;
     animation: badgeGlow 2s ease-in-out infinite;
-    will-change: box-shadow;
+    
 }
 .hero-badge::before {
     content: '';
@@ -546,7 +549,7 @@ body {
     z-index: 2;
     text-decoration: none;
     box-shadow: 0 10px 30px rgba(255,215,0,0.4);
-    will-change: transform, box-shadow;
+    
 }
 .launch-btn::before {
     content: '';
@@ -639,7 +642,7 @@ body {
     text-decoration: none;
     display: inline-block;
     background: transparent;
-    will-change: transform, box-shadow;
+    
 }
 .btn-magic::before {
     content: '';
@@ -813,7 +816,7 @@ section {
     transform-style: preserve-3d;
     transition: transform 0.5s ease;
     border: 1px solid rgba(255,255,255,0.05);
-    will-change: transform;
+    
 }
 .iyke-card::before {
     content: '';
@@ -861,7 +864,7 @@ section {
     z-index: 2;
     box-shadow: 0 0 60px rgba(255,215,0,0.3);
     animation: avatarPulse 3s ease-in-out infinite;
-    will-change: box-shadow;
+    
 }
 @keyframes avatarPulse {
     0%, 100% { box-shadow: 0 0 40px rgba(255,215,0,0.2); }
@@ -878,7 +881,7 @@ section {
     border-top-color: var(--gold);
     border-right-color: var(--electric-blue);
     animation: avatarSpin 3s linear infinite;
-    will-change: transform;
+    
 }
 .iyke-avatar-ring:nth-child(2) {
     top: -20px; left: -20px;
@@ -1013,7 +1016,7 @@ section {
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: default;
     font-family: 'Space Mono', monospace;
-    will-change: transform, box-shadow;
+    
 }
 .iyke-tag:hover {
     background: rgba(255,215,0,0.2);
@@ -1055,7 +1058,7 @@ section {
     transform-style: preserve-3d;
     transition: transform 0.5s ease;
     border: 1px solid rgba(255,255,255,0.05);
-    will-change: transform;
+    
 }
 .calc-device::before {
     content: '';
@@ -1130,7 +1133,7 @@ section {
     overflow: hidden;
     transition: all 0.3s ease;
     font-family: 'Orbitron', sans-serif;
-    will-change: transform, box-shadow;
+    
 }
 .calc-btn-num {
     background: linear-gradient(145deg, #2a2a4a, #1a1a3a);
@@ -1233,7 +1236,7 @@ section {
     position: relative;
     overflow: hidden;
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    will-change: transform, box-shadow;
+    
 }
 .ln-card::before {
     content: '';
@@ -1320,7 +1323,7 @@ section {
     position: relative;
     overflow: hidden;
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    will-change: transform, box-shadow;
+    
 }
 .pipe-card::before {
     content: '';
@@ -1391,7 +1394,7 @@ section {
     position: relative;
     overflow: hidden;
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    will-change: transform, box-shadow;
+    
 }
 .test-card::before {
     content: '';
@@ -1476,7 +1479,7 @@ section {
     gap: 25px;
     animation: marqueeScroll 30s linear infinite;
     width: max-content;
-    will-change: transform;
+    
 }
 @keyframes marqueeScroll {
     0% { transform: translateX(0); }
@@ -1500,7 +1503,7 @@ section {
     transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
-    will-change: transform, box-shadow;
+    
 }
 .marquee-item::before {
     content: '';
@@ -1646,28 +1649,28 @@ section {
     opacity: 0;
     transform: translateY(60px);
     transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    will-change: opacity, transform;
+    
 }
 .reveal.active { opacity: 1; transform: translateY(0); }
 .reveal-left {
     opacity: 0;
     transform: translateX(-80px);
     transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    will-change: opacity, transform;
+    
 }
 .reveal-left.active { opacity: 1; transform: translateX(0); }
 .reveal-right {
     opacity: 0;
     transform: translateX(80px);
     transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    will-change: opacity, transform;
+    
 }
 .reveal-right.active { opacity: 1; transform: translateX(0); }
 .reveal-scale {
     opacity: 0;
     transform: scale(0.8);
     transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    will-change: opacity, transform;
+    
 }
 .reveal-scale.active { opacity: 1; transform: scale(1); }
 
@@ -1687,7 +1690,7 @@ section {
     height: 100%;
     transform-style: preserve-3d;
     animation: carouselRotate 25s linear infinite;
-    will-change: transform;
+    
 }
 
 .art-item-3d {
@@ -1712,7 +1715,7 @@ section {
     font-size: 1.2em;
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     cursor: pointer;
-    will-change: transform;
+    
 }
 
 .art-item-3d:hover {
@@ -1737,7 +1740,28 @@ section {
     .launch-btn { padding: 18px 40px; font-size: 0.9em; }
     .art-item-3d { width: 150px; height: 210px; margin-left: -75px; margin-top: -105px; }
     .art-gallery-3d { height: 300px; }
-    .cursor-main, .cursor-ring { display: none; }
+    .cursor-main, .cursor-ring {
+    will-change: transform, left, top; display: none; }
+    body { cursor: auto; }
+}
+
+/* Fix: Cursor fallback for tablet sizes (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .cursor-main, .cursor-ring {
+    will-change: transform, left, top; display: none; }
+    body { cursor: auto; }
+}
+
+/* Fix: Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .cursor-main, .cursor-ring {
+    will-change: transform, left, top; display: none; }
     body { cursor: auto; }
 }
 </style>
@@ -1747,8 +1771,8 @@ section {
 <body>
 
 <!-- Loading Screen -->
-<div class="loading-screen" id="loadingScreen">
-    <div class="loading-glitch" data-text="INITIALIZING COURSE MATE">INITIALIZING COURSE MATE</div>
+<div class="loading-screen" id="loadingScreen" role="status" aria-live="polite" aria-label="Loading Course Mate Calculator">
+    <div class="loading-glitch" data-text="INITIALIZING MATE">INITIALIZING COURSE MATE</div>
     <div class="loading-sub">Mr. Iyke's DevOps Legacy | Natural Log Calculator</div>
     <div class="loading-progress">
         <div class="loading-progress-bar"></div>
@@ -1793,13 +1817,13 @@ section {
 <nav class="nav-bar" id="navBar">
     <div class="nav-logo">COURSE MATE</div>
     <div class="nav-links">
-        <a href="#hero" class="nav-link">Home</a>
-        <a href="#iyke" class="nav-link">Mr. Iyke</a>
-        <a href="#calculator" class="nav-link">Calculator</a>
-        <a href="#ln" class="nav-link">ln Feature</a>
-        <a href="#pipeline" class="nav-link">Pipeline</a>
-        <a href="#testing" class="nav-link">Testing</a>
-        <a href="#testimonials" class="nav-link">Voices</a>
+        <a href="#hero" class="nav-link" aria-label="Go to home section">Home</a>
+        <a href="#iyke" class="nav-link" aria-label="Go to Mr. Iyke section">Mr. Iyke</a>
+        <a href="#calculator" class="nav-link" aria-label="Go to calculator section">Calculator</a>
+        <a href="#ln" class="nav-link" aria-label="Go to natural logarithm feature section">ln Feature</a>
+        <a href="#pipeline" class="nav-link" aria-label="Go to DevOps pipeline section">Pipeline</a>
+        <a href="#testing" class="nav-link" aria-label="Go to testing section">Testing</a>
+        <a href="#testimonials" class="nav-link" aria-label="Go to testimonials section">Voices</a>
     </div>
 </nav>
 
@@ -1816,14 +1840,15 @@ section {
             containerized deployment, and CI/CD automation. Crafted under the guidance of Mr. Iyke."
         </p>
         <div class="launch-btn-wrapper">
-            <a href="calculator.html" class="launch-btn" id="launchBtn">
+            <!-- NOTE: Update href to match your actual calculator path -->
+            <a href="calculator.html" class="launch-btn" id="launchBtn" aria-label="Launch the calculator application">
                 <span class="btn-icon">🚀</span>
                 <span>LAUNCH CALCULATOR</span>
             </a>
         </div>
         <div class="hero-cta-secondary">
-            <a href="#iyke" class="btn-magic btn-blue">Meet Mr. Iyke</a>
-            <a href="#ln" class="btn-magic btn-pink">ln Feature</a>
+            <a href="#iyke" class="btn-magic btn-blue" aria-label="Navigate to Mr. Iyke section">Meet Mr. Iyke</a>
+            <a href="#ln" class="btn-magic btn-pink" aria-label="Navigate to Natural Logarithm feature section">ln Feature</a>
         </div>
     </div>
     <div class="scroll-hint">
@@ -2013,7 +2038,7 @@ section {
         <p class="section-desc">Interactive 3D art installation. Hover over the rotating cards to experience the depth. Click for explosion effect.</p>
     </div>
     <div class="art-gallery-3d">
-        <div class="art-carousel" id="artCarousel">
+        <div class="art-carousel" id="artCarousel" role="region" aria-label="3D rotating technology showcase">
             <div class="art-item-3d" style="transform: rotateY(0deg) translateZ(350px);">
                 <div style="font-size: 3em; margin-bottom: 15px;">🧮</div>
                 <div>CALC</div>
@@ -2330,10 +2355,14 @@ const canvas = document.getElementById('bgCanvas');
 const ctx = canvas ? canvas.getContext('2d') : null;
 let width, height;
 
+let resizeTimeout;
 function resizeCanvas() {
     if (!canvas) return;
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    }, 150);
 }
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
