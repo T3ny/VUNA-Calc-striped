@@ -1,19 +1,10 @@
-// ===============================
-// 🧠 SMART RESULT MEMORY FEATURE
-// ===============================
-
-let LAST_RESULT = 0;
 var currentExpression = "";
+var lastResult = 0;
 
-// ------------------------------
-// Theme Toggle Logic
-// ------------------------------
 function toggleTheme() {
-  const body = document.body;
-  const btn = document.getElementById("theme-toggle");
-
+  var body = document.body;
+  var btn = document.getElementById("theme-toggle");
   body.classList.toggle("dark-mode");
-
   if (body.classList.contains("dark-mode")) {
     btn.innerHTML = "☀️";
     btn.title = "Switch to light mode";
@@ -25,12 +16,10 @@ function toggleTheme() {
   }
 }
 
-// Set theme on page load from localStorage
 window.addEventListener("DOMContentLoaded", function () {
-  const theme = localStorage.getItem("theme");
-  const body = document.body;
-  const btn = document.getElementById("theme-toggle");
-
+  var theme = localStorage.getItem("theme");
+  var body = document.body;
+  var btn = document.getElementById("theme-toggle");
   if (btn) {
     if (theme === "dark") {
       body.classList.add("dark-mode");
@@ -43,25 +32,8 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// ------------------------------
-// Calculator State
-// ------------------------------
-let left = "";
-let operator = "";
-let right = "";
-let steps = [];
-const MAX_STEPS = 6;
-
-// ------------------------------
-// Basic Calculator Functions
-// ------------------------------
 function appendToResult(value) {
   currentExpression += value.toString();
-  updateResult();
-}
-
-function bracketToResult(value) {
-  currentExpression += value;
   updateResult();
 }
 
@@ -71,11 +43,7 @@ function backspace() {
 }
 
 function operatorToResult(value) {
-  if (value === "^") {
-    currentExpression += "**";
-  } else {
-    currentExpression += value;
-  }
+  currentExpression += value;
   updateResult();
 }
 
@@ -84,118 +52,24 @@ function clearResult() {
   updateResult();
 }
 
-// 🆕 LN FUNCTION - inserts the natural-log token into the expression
-function insertFunction(name) {
-  currentExpression += `${name}(`;
+function insertLn() {
+  currentExpression += "ln(";
   updateResult();
 }
 
-function lnToResult() {
-  insertFunction("ln");
-}
-
-function balanceParentheses(expr) {
-  const openCount = (expr.match(/\(/g) || []).length;
-  const closeCount = (expr.match(/\)/g) || []).length;
-  return expr + ")".repeat(Math.max(0, openCount - closeCount));
-}
-
-function normalizeExpression(expr) {
-  return expr
-    .replace(/\b(?:ln|log)\s*\(/gi, "Math.log(")
-    .replace(/asin\(/g, "asinDeg(")
-    .replace(/acos\(/g, "acosDeg(")
-    .replace(/atan\(/g, "atanDeg(")
-    .replace(/sin\(/g, "sinDeg(")
-    .replace(/cos\(/g, "cosDeg(")
-    .replace(/tan\(/g, "tanDeg(")
-    .replace(/asinh\(/g, "asinh(")
-    .replace(/sinh\(/g, "sinh(")
-    .replace(/\be\b/g, "Math.E")
-    .replace(/\bpi\b/g, "Math.PI");
-}
-
-function percentToResult() {
-  if (!currentExpression) return;
-
-  const match = currentExpression.match(/(.+?)(\*\*|[+\-*/^])([0-9.]*)$/);
-
-  if (!match) {
-    const num = parseFloat(currentExpression);
-    if (isNaN(num)) return;
-
-    currentExpression = (num / 100).toString();
-  } else {
-    const leftPart = match[1];
-    const rightPart = match[3];
-
-    if (!rightPart) return;
-
-    let leftVal;
-
-    try {
-      leftVal = eval(leftPart);
-    } catch (e) {
-      leftVal = parseFloat(leftPart);
-    }
-
-    const rightVal = parseFloat(rightPart);
-    if (isNaN(leftVal) || isNaN(rightVal)) return;
-
-    const percentVal = (leftVal * rightVal) / 100;
-
-    currentExpression = percentVal.toString();
-  }
-
-  currentExpression += "*";
-  updateResult();
-}
-
-// ------------------------------
-// Calculate Result
-// ------------------------------
-function calculateExpression(expression) {
-  try {
-
-    const balancedExpression = balanceParentheses(expression);
-    let normalizedExpression = normalizeExpression(balancedExpression);
-
-    // 🧠 Replace "ans" with last result automatically
-    normalizedExpression = normalizedExpression.replace(
-      /\bans\b/gi,
-      LAST_RESULT,
-    );
-
-    // Calculate result
-    let result = eval(normalizedExpression);
-    console.log("Calculated result for expression:", expression, "->", result);
-
-    if (isNaN(result) || !isFinite(result)) {
-      throw new Error();
-    }
-
-    return result;
-  } catch (e) {
-    return "Error";
-  }
-}
 function calculateResult() {
   if (!currentExpression) return;
-    const display = document.getElementById("result"); 
-    // Calculate result
-    let result = calculateExpression(currentExpression);
-    result = String(result);
-
-    // Save result for future expressions
-    LAST_RESULT = result;
-
-    // Display normally
+  try {
+    var display = document.getElementById("result");
+    var result = evaluateExpression(currentExpression, lastResult);
+    lastResult = result;
     display.value = result;
-
-    currentExpression = result;
-    updateResult();
+    currentExpression = result.toString();
+  } catch (e) {
+    document.getElementById("result").value = "Error";
+    currentExpression = "";
+  }
 }
-
 
 function updateResult() {
   document.getElementById("result").value = currentExpression || "0";
