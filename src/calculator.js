@@ -34,9 +34,7 @@ function tokenize(expr) {
       while (i < expr.length && /[a-zA-Z]/.test(expr[i])) {
         name += expr[i]; i++;
       }
-      if (name.toLowerCase() === 'ln') {
-        tokens.push({ type: 'FUNC', value: 'ln' });
-      } else if (name.toLowerCase() === 'ans') {
+      if (name.toLowerCase() === 'ans') {
         tokens.push({ type: 'ANS' });
       } else {
         throw new Error('Unknown function: ' + name);
@@ -119,13 +117,7 @@ function evaluateRPN(tokens, lastResult) {
         default: throw new Error('Unknown operator: ' + token.value);
       }
     } else if (token.type === 'FUNC') {
-      const arg = stack.pop();
-      if (token.value === 'ln') {
-        if (arg <= 0) throw new Error('ln domain error');
-        stack.push(Math.log(arg));
-      } else {
-        throw new Error('Unknown function: ' + token.value);
-      }
+      throw new Error('Unsupported function: ' + token.value);
     }
   }
 

@@ -46,29 +46,6 @@ describe('arithmetic', () => {
   });
 });
 
-describe('ln function', () => {
-  it('calculates natural log of a number', () => {
-    expect(evaluateExpression('ln(1)')).toBe(0);
-  });
-
-  it('calculates ln(e) = 1', () => {
-    expect(evaluateExpression('ln(2.718281828459045)')).toBeCloseTo(1, 4);
-  });
-
-  it('rejects ln of zero', () => {
-    expect(() => evaluateExpression('ln(0)')).toThrow();
-  });
-
-  it('rejects ln of negative number', () => {
-    expect(() => evaluateExpression('ln(-1)')).toThrow();
-  });
-
-  it('works in compound expression', () => {
-    const result = evaluateExpression('ln(1)+5');
-    expect(result).toBe(5);
-  });
-});
-
 describe('ans feature', () => {
   it('uses last result in expression', () => {
     expect(evaluateExpression('ans+5', 10)).toBe(15);
@@ -76,5 +53,45 @@ describe('ans feature', () => {
 
   it('handles ans with no previous result', () => {
     expect(evaluateExpression('ans+2')).toBe(2);
+  });
+});
+
+describe('polynomial roots', () => {
+  const { solveQuadratic, findPolynomialRoots, Complex } = require('../src/polynomial.js');
+
+  it('solves quadratic with two real roots', () => {
+    const roots = solveQuadratic(1, -3, 2);
+    expect(roots.length).toBe(2);
+    const values = roots.map((r) => r.re).sort((a, b) => a - b);
+    expect(values).toEqual([1, 2]);
+    expect(roots[0].im).toBe(0);
+    expect(roots[1].im).toBe(0);
+  });
+
+  it('solves quadratic with complex roots', () => {
+    const roots = solveQuadratic(1, 0, 1);
+    expect(roots.length).toBe(2);
+    expect(roots[0].re).toBeCloseTo(0);
+    expect(Math.abs(roots[0].im)).toBeCloseTo(1);
+    expect(Math.abs(roots[1].im)).toBeCloseTo(1);
+  });
+
+  it('finds cubic roots with Durand-Kerner', () => {
+    const roots = findPolynomialRoots([1, -6, 11, -6]);
+    const rootValues = roots.map((r) => Number(r.re.toFixed(6))).sort((a, b) => a - b);
+    expect(rootValues).toEqual([1, 2, 3]);
+  });
+
+  it('finds quartic roots with Durand-Kerner', () => {
+    const roots = findPolynomialRoots([1, -10, 35, -50, 24]);
+    const rootValues = roots.map((r) => Number(r.re.toFixed(6))).sort((a, b) => a - b);
+    expect(rootValues).toEqual([1, 2, 3, 4]);
+  });
+
+  it('computes complex power correctly', () => {
+    const z = new Complex(0, 1);
+    const squared = z.pow(2);
+    expect(squared.re).toBeCloseTo(-1);
+    expect(squared.im).toBeCloseTo(0);
   });
 });

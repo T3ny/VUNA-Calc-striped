@@ -27,11 +27,40 @@
                   <div class="display-container">
                     <input type="text" class="form-control" id="result" placeholder="0" disabled />
                   </div>
+                  <div class="polynomial-panel mb-3">
+                    <div class="d-flex justify-content-between flex-wrap gap-2 mb-2">
+                      <button class="btn btn-outline-primary btn-sm" onclick="setPolynomialDegree(2)">Quadratic</button>
+                      <button class="btn btn-outline-primary btn-sm" onclick="setPolynomialDegree(3)">Cubic</button>
+                      <button class="btn btn-outline-primary btn-sm" onclick="setPolynomialDegree(4)">Quartic</button>
+                      <button class="btn btn-secondary btn-sm" onclick="clearPolynomialInputs()">Reset</button>
+                    </div>
+                    <div class="row gx-2 mb-2" id="polynomial-inputs">
+                      <div class="col">
+                        <input type="number" class="form-control form-control-sm" id="coeff-a" placeholder="a" step="any" />
+                      </div>
+                      <div class="col">
+                        <input type="number" class="form-control form-control-sm" id="coeff-b" placeholder="b" step="any" />
+                      </div>
+                      <div class="col">
+                        <input type="number" class="form-control form-control-sm" id="coeff-c" placeholder="c" step="any" />
+                      </div>
+                      <div class="col" id="coeff-d-col" style="display:none;">
+                        <input type="number" class="form-control form-control-sm" id="coeff-d" placeholder="d" step="any" />
+                      </div>
+                      <div class="col" id="coeff-e-col" style="display:none;">
+                        <input type="number" class="form-control form-control-sm" id="coeff-e" placeholder="e" step="any" />
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center gap-2">
+                      <button class="btn btn-success btn-sm" onclick="solvePolynomial()">Solve</button>
+                      <small id="poly-mode-label" class="text-muted">Quadratic solver</small>
+                    </div>
+                  </div>
                   <div class="btn-grid">
-                    <!-- Row 1: AC, CE, ln, ÷ -->
+                    <!-- Row 1: AC, CE, ÷ -->
                     <button class="btn btn-action" onclick="clearResult()">AC</button>
                     <button class="btn btn-action" onclick="backspace()">CE</button>
-                    <button class="btn btn-special" onclick="insertLn()">ln</button>
+                    <button class="btn btn-light" style="visibility:hidden;" disabled></button>
                     <button class="btn btn-operator" onclick="operatorToResult('/')">÷</button>
 
                     <!-- Row 2: 7, 8, 9, × -->
