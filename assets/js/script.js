@@ -60,6 +60,11 @@ function clearResult() {
   clearPolynomialInputs();
 }
 
+function insertLn() {
+  currentExpression += "ln(";
+  updateResult();
+}
+
 function calculateResult() {
   if (!currentExpression) return;
   try {

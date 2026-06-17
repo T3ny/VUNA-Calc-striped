@@ -57,11 +57,11 @@
                       <small id="poly-mode-label" class="text-muted">Quadratic solver</small>
                     </div>
                   </div>
-                  <div class="btn-grid">
-                    <!-- Row 1: AC, CE, ÷ -->
+                    <div class="btn-grid">
+                    <!-- Row 1: AC, CE, ln, ÷ -->
                     <button class="btn btn-action" onclick="clearResult()">AC</button>
                     <button class="btn btn-action" onclick="backspace()">CE</button>
-                    <button class="btn btn-light" style="visibility:hidden;" disabled></button>
+                    <button class="btn btn-special" onclick="insertLn()">ln</button>
                     <button class="btn btn-operator" onclick="operatorToResult('/')">÷</button>
 
                     <!-- Row 2: 7, 8, 9, × -->
