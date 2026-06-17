@@ -197,19 +197,19 @@ function durandKerner(coeffs) {
 
   for (var iteration = 0; iteration < 1000; iteration++) {
     var converged = true;
-    for (var i = 0; i < degree; i++) {
+    for (var k = 0; k < degree; k++) {
       var denominator = new Complex(1, 0);
       for (var j = 0; j < degree; j++) {
-        if (i === j) continue;
-        denominator = denominator.mul(roots[i].sub(roots[j]));
+        if (k === j) continue;
+        denominator = denominator.mul(roots[k].sub(roots[j]));
       }
-      var value = evaluatePolynomialComplex(coeffs, roots[i]);
+      var value = evaluatePolynomialComplex(coeffs, roots[k]);
       var correction = value.div(denominator);
-      var nextRoot = roots[i].sub(correction);
-      if (roots[i].sub(nextRoot).abs() > 1e-12) {
+      var nextRoot = roots[k].sub(correction);
+      if (roots[k].sub(nextRoot).abs() > 1e-12) {
         converged = false;
       }
-      roots[i] = nextRoot;
+      roots[k] = nextRoot;
     }
     if (converged) {
       break;
